@@ -17,7 +17,11 @@ SOURCES += main.cpp \
     rtsetpage.cpp \
     quickconn.cpp \
     dlgaddrbk.cpp \
-    addrmodel.cpp
+    addrmodel.cpp \
+    statemodel.cpp \
+    statedelegate.cpp \
+    rtsetmodel.cpp \
+    rtsetdelegate.cpp
 HEADERS += mainwindow.h \
     tabhost.h \
     ctlitems.h \
@@ -26,7 +30,11 @@ HEADERS += mainwindow.h \
     rtsetpage.h \
     quickconn.h \
     dlgaddrbk.h \
-    addrmodel.h
+    addrmodel.h \
+    statemodel.h \
+    statedelegate.h \
+    rtsetmodel.h \
+    rtsetdelegate.h
 FORMS += mainwindow.ui \
     tabhost.ui \
     ratestatepage.ui \
@@ -35,5 +43,4 @@ FORMS += mainwindow.ui \
     quickconn.ui \
     dlgaddrbk.ui
 RESOURCES += zpmain.qrc
-TRANSLATIONS += rzpctrl_zh_CN.ts
 win32:RC_FILE = rzpctrl.rc

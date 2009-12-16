@@ -247,10 +247,44 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>Connect</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>tabReconn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Disconnect</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>tabDisconn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>aboutme()</slot>
   <slot>showaddrbkdlg()</slot>
   <slot>showquickconndlg()</slot>
+  <slot>tabReconn()</slot>
+  <slot>tabDisconn()</slot>
  </slots>
 </ui>
