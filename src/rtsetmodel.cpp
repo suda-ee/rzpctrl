@@ -5,14 +5,14 @@ rtsetmodel::rtsetmodel(QObject * parent)
 {
     insertColumns(0, 4);
     insertRows(0, 4);
-    setHeaderData(0, Qt::Horizontal, trUtf8("å…‰çº¤"));
-    setHeaderData(1, Qt::Horizontal, trUtf8("æ— çº¿Mesh"));
-    setHeaderData(2, Qt::Horizontal, trUtf8("E1"));
-    setHeaderData(3, Qt::Horizontal, trUtf8("V35"));
-    setHeaderData(0, Qt::Vertical, trUtf8("TDCS"));
-    setHeaderData(1, Qt::Vertical, trUtf8("è¯­éŸ³"));
-    setHeaderData(2, Qt::Vertical, trUtf8("è§†é¢‘"));
-    setHeaderData(3, Qt::Vertical, trUtf8("E1"));
+    setHeaderData(0, Qt::Horizontal, tr("¹âÏË"));
+    setHeaderData(1, Qt::Horizontal, tr("ÎÞÏßMesh"));
+    setHeaderData(2, Qt::Horizontal, tr("E1"));
+    setHeaderData(3, Qt::Horizontal, tr("V35"));
+    setHeaderData(0, Qt::Vertical, tr("TDCS"));
+    setHeaderData(1, Qt::Vertical, tr("ÓïÒô"));
+    setHeaderData(2, Qt::Vertical, tr("ÊÓÆµ"));
+    setHeaderData(3, Qt::Vertical, tr("E1"));
 }
 
 rtsetmodel::~rtsetmodel()

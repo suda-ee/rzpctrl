@@ -1,13 +1,23 @@
-# -------------------------------------------------
-# Project created by QtCreator 2009-03-22T20:09:25
-# -------------------------------------------------
+########################################################################
+# Copyright (c) 2009 Soochow University
+# $Id: $
+# Purpose: 
+########################################################################
+TEMPLATE = app
+TARGET = rzpctrl
 QT += network \
     xml
-TARGET = rzpctrl
-TEMPLATE = app
-CONFIG += windows
-
-# CONFIG += embed_manifest_exe
+PRODUCT_VERSION=0,1,1,0
+DEFINES += PRODUCT_VERSION=$${PRODUCT_VERSION}
+DEFINES += PRODUCT_VERSION_STR=\\\"$$PRODUCT_VERSION\\\"
+FILE_VERSION=0,1,1,0
+DEFINES += FILE_VERSION=$${FILE_VERSION}
+DEFINES += FILE_VERSION_STR=\\\"$$FILE_VERSION\\\"
+win32 {
+    CONFIG += embed_manifest_exe windows 
+    #CONFIG += embed_manifest_exe console
+}
+CODECFORTR = GBK
 SOURCES += main.cpp \
     mainwindow.cpp \
     tabhost.cpp \

@@ -6,13 +6,13 @@ statemodel::statemodel(QObject * parent)
 {
     insertColumns(0, 3);
     insertRows(0, 4);
-    setHeaderData(0, Qt::Horizontal, trUtf8("閫氭柇"));
-    setHeaderData(1, Qt::Horizontal, trUtf8("蹇欓棽"));
-    setHeaderData(2, Qt::Horizontal, trUtf8("閫熺巼(kbits/s)"));
-    setHeaderData(0, Qt::Vertical, trUtf8("鍏夌氦"));
-    setHeaderData(1, Qt::Vertical, trUtf8("鏃犵嚎Mesh"));
-    setHeaderData(2, Qt::Vertical, trUtf8("E1"));
-    setHeaderData(3, Qt::Vertical, trUtf8("V35"));
+    setHeaderData(0, Qt::Horizontal, tr("通断"));
+    setHeaderData(1, Qt::Horizontal, tr("忙闲"));
+    setHeaderData(2, Qt::Horizontal, tr("速率(kbits/s)"));
+    setHeaderData(0, Qt::Vertical, tr("光纤"));
+    setHeaderData(1, Qt::Vertical, tr("无线Mesh"));
+    setHeaderData(2, Qt::Vertical, tr("E1"));
+    setHeaderData(3, Qt::Vertical, tr("V35"));
 }
 
 statemodel::~statemodel()
