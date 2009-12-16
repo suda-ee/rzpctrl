@@ -31,7 +31,8 @@ SOURCES += main.cpp \
     statemodel.cpp \
     statedelegate.cpp \
     rtsetmodel.cpp \
-    rtsetdelegate.cpp
+    rtsetdelegate.cpp \
+    optionsdialog.cpp
 HEADERS += mainwindow.h \
     tabhost.h \
     ctlitems.h \
@@ -44,13 +45,15 @@ HEADERS += mainwindow.h \
     statemodel.h \
     statedelegate.h \
     rtsetmodel.h \
-    rtsetdelegate.h
+    rtsetdelegate.h \
+    optionsdialog.h
 FORMS += mainwindow.ui \
     tabhost.ui \
     ratestatepage.ui \
     rtsetpage.ui \
     rtstatepage.ui \
     quickconn.ui \
-    dlgaddrbk.ui
+    dlgaddrbk.ui \
+    optionsdialog.ui
 RESOURCES += zpmain.qrc
 win32:RC_FILE = rzpctrl.rc

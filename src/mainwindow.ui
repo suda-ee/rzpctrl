@@ -61,7 +61,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>27</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_C">
@@ -80,6 +80,7 @@
     <property name="title">
      <string>选项(&amp;O)</string>
     </property>
+    <addaction name="action_Settings"/>
    </widget>
    <widget class="QMenu" name="menu_H">
     <property name="title">
@@ -167,6 +168,15 @@
   <action name="aboutme">
    <property name="text">
     <string>关于</string>
+   </property>
+  </action>
+  <action name="action_Settings">
+   <property name="icon">
+    <iconset resource="zpmain.qrc">
+     <normaloff>:/images/remotesetup.png</normaloff>:/images/remotesetup.png</iconset>
+   </property>
+   <property name="text">
+    <string>设置 (&amp;S)</string>
    </property>
   </action>
  </widget>
@@ -279,6 +289,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_Settings</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>showOptionsDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>aboutme()</slot>
@@ -286,5 +312,6 @@
   <slot>showquickconndlg()</slot>
   <slot>tabReconn()</slot>
   <slot>tabDisconn()</slot>
+  <slot>showOptionsDialog()</slot>
  </slots>
 </ui>

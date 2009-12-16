@@ -31,6 +31,7 @@ public slots:
     void tabReconn();
     void tabDisconn();
     void setStatusMsg(const QString &msg);
+    void showOptionsDialog();
 
 };
 
