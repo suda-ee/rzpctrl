@@ -28,6 +28,9 @@ public slots:
     void showquickconndlg();
     void quickconnaccept();
     void quickconnreject();
+    void tabReconn();
+    void tabDisconn();
+    void setStatusMsg(const QString &msg);
 
 };
 

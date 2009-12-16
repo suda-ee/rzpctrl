@@ -1,4 +1,4 @@
-﻿#include <QtGui/QMessageBox>
+#include <QtGui/QMessageBox>
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -32,14 +32,17 @@ void MainWindow::showaddrbkdlg()
 void MainWindow::addrbkaccept()
 {
     int currentrow = addrdlg->addrlist->currentIndex().row();
-    QModelIndex idx = addrdlg->hostsmodel->index(currentrow, 0);
-    QString alias = addrdlg->hostsmodel->data(idx).toString();
-    idx = addrdlg->hostsmodel->index(currentrow, 1);
-    QString hostname = addrdlg->hostsmodel->data(idx).toString();
-    idx = addrdlg->hostsmodel->index(currentrow, 2);
-    quint16 port = addrdlg->hostsmodel->data(idx).toUInt();
+    if (currentrow > -1)
+    {
+        QModelIndex idx = addrdlg->hostsmodel->index(currentrow, 0);
+        QString alias = addrdlg->hostsmodel->data(idx).toString();
+        idx = addrdlg->hostsmodel->index(currentrow, 1);
+        QString hostname = addrdlg->hostsmodel->data(idx).toString();
+        idx = addrdlg->hostsmodel->index(currentrow, 2);
+        quint16 port = addrdlg->hostsmodel->data(idx).toUInt();
+        addtabhost(alias, hostname, port);
+    }
     delete addrdlg;
-    addtabhost(alias, hostname, port);
 }
 
 void MainWindow::addrbkreject()
@@ -73,10 +76,35 @@ void MainWindow::addtabhost(QString &aliasname, QString &hostName, quint16 port)
     tabhost *thetab = new tabhost(tabwindow);
     tabwindow->addTab(thetab, thetab->windowIcon(), aliasname);
     tabwindow->setCurrentWidget(thetab);
+    connect(thetab, SIGNAL(statusMsg(const QString &)), this, SLOT(setStatusMsg(const QString &)));
+    thetab->setAndConn(hostName, port);
+}
+
+void MainWindow::tabReconn()
+{
+    int idx = tabwindow->currentIndex();
+    if (idx > -1)
+    {
+        ((tabhost*)tabwindow->widget(idx))->reconnectskt();
+    }
+}
+
+void MainWindow::tabDisconn()
+{
+    int idx = tabwindow->currentIndex();
+    if (idx > -1)
+    {
+        ((tabhost*)tabwindow->widget(idx))->disconnectskt();
+    }
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::setStatusMsg(const QString &msg)
+{
+    statusmsg.setText(msg);
 }
 
 void MainWindow::aboutme()
