@@ -1,0 +1,5 @@
+//#define RT_MANIFEST 24 
+//#define APP_MANIFEST 1
+IDI_ICON1               ICON    DISCARDABLE     "images/console.ico"
+//APP_MANIFEST RT_MANIFEST rzpctrl.exe.manifest
+

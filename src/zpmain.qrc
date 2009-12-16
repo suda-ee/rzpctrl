@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="/" >
+    <file>images/closeTab.png</file>
+    <file>images/conn.png</file>
+    <file>images/connect.png</file>
+    <file>images/console.ico</file>
+    <file>images/console.png</file>
+    <file>images/datasumm.png</file>
+    <file>images/disconnect.png</file>
+    <file>images/netadd.png</file>
+    <file>images/qkconn.png</file>
+    <file>images/remotesetup.png</file>
+    <file>images/routedata.png</file>
+    <file>images/routes.png</file>
+    <file>images/statestatus.png</file>
+    <file>images/tablogo.png</file>
+    <file>images/welcomepic.png</file>
+  </qresource>
+</RCC>

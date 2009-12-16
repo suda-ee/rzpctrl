@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>rtsetpage</class>
+ <widget class="QWidget" name="rtsetpage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="tlpic">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="zpmain.qrc">:/images/routes.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="tlmsg">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>路由状态更改</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="tblroute">
+     <row>
+      <property name="text">
+       <string>TDCS</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>音频</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>视频</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>E1</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>E1</string>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>光口</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>无线Mesh</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>E1</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>V35</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="zpmain.qrc"/>
+ </resources>
+ <connections/>
+</ui>
