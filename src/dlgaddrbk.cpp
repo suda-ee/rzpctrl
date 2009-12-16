@@ -11,7 +11,7 @@ dlgaddrbk::dlgaddrbk(QWidget *parent)
     theaddrfile = new QFile(ADDR_FILE, this);
     hostsmodel = new addrmodel(addrlist);
     hostsmodel->insertColumns(0, 3);
-    hostsmodel->setHeaderData(0, Qt::Horizontal, trUtf8("ç«™å"),
+    hostsmodel->setHeaderData(0, Qt::Horizontal, tr("Õ¾Ãû"),
             Qt::DisplayRole);
     if (addrdocument.setContent(theaddrfile))
     {
@@ -53,7 +53,7 @@ void dlgaddrbk::newhostentry()
     int therow = hostsmodel->rowCount() - 1;
     addrlist->selectRow(therow);
     hostsmodel->setData(hostsmodel->index(therow, 0),
-            trUtf8("New Host %1").arg(therow));
+            tr("New Host %1").arg(therow));
     hostsmodel->setData(hostsmodel->index(therow, 2),
             DEFAULTPORT);
     mapper->setCurrentIndex(therow);

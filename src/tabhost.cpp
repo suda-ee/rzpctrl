@@ -18,21 +18,21 @@ tabhost::tabhost(QWidget *parent)
     icon5.addPixmap(QPixmap(QString::fromUtf8(":/images/routes.png")), QIcon::Normal, QIcon::Off);
     ctlitems *stategroup = new ctlitems(treecrl);
     stategroup->setIcon(0, icon1);
-    stategroup->setText(0, trUtf8("çŠ¶æ€æŸ¥çœ‹"));
+    stategroup->setText(0, tr("×´Ì¬²é¿´"));
     stategroup->setFlags(Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
     ctlitems *datastate = new ctlitems(stategroup);
     datastate->setIcon(0, icon2);
-    datastate->setText(0, trUtf8("é€šä¿¡çŠ¶æ€"));
+    datastate->setText(0, tr("Í¨ĞÅ×´Ì¬"));
     ctlitems *routestate = new ctlitems(stategroup);
     routestate->setIcon(0, icon3);
-    routestate->setText(0, trUtf8("è·¯ç”±çŠ¶æ€"));
+    routestate->setText(0, tr("Â·ÓÉ×´Ì¬"));
     ctlitems *setgroup = new ctlitems(treecrl);
     setgroup->setIcon(0, icon4);
-    setgroup->setText(0, trUtf8("è¿œç¨‹æ§åˆ¶"));
+    setgroup->setText(0, tr("Ô¶³Ì¿ØÖÆ"));
     setgroup->setFlags(Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
     ctlitems *routectl = new ctlitems(setgroup);
     routectl->setIcon(0, icon5);
-    routectl->setText(0, trUtf8("è·¯ç”±è®¾ç½®"));
+    routectl->setText(0, tr("Â·ÓÉÉèÖÃ"));
 
     treecrl->expandAll();
 
@@ -128,7 +128,7 @@ void tabhost::getDataRate()
     sendingMsg[0] = 0x95;
     sendingMsg[1] = 0x21;
     if (dataSocket->write(sendingMsg) > 0)
-        emit statusMsg(trUtf8("%1: å‘é€æ•°æ®æˆåŠŸ").arg(peerhostname));
+        emit statusMsg(tr("%1: ·¢ËÍÊı¾İ³É¹¦").arg(peerhostname));
     //dataSocket->flush();
 }
 
@@ -146,7 +146,7 @@ void tabhost::slSendRoute()
     sendingMsg.append(rttable[model->carrier.at(2)]);
     sendingMsg.append(rttable[model->carrier.at(3)]);
     if (dataSocket->write(sendingMsg) > 0)
-        emit statusMsg(trUtf8("%1: å‘é€æ•°æ®æˆåŠŸ").arg(peerhostname));
+        emit statusMsg(tr("%1: ·¢ËÍÊı¾İ³É¹¦").arg(peerhostname));
 }
 
 void tabhost::setManuRt()
@@ -156,7 +156,7 @@ void tabhost::setManuRt()
     sendingMsg[0] = 0xeb;
     sendingMsg[1] = 0x83;
     if (dataSocket->write(sendingMsg) > 0)
-        emit statusMsg(trUtf8("%1: å‘é€æ•°æ®æˆåŠŸ").arg(peerhostname));
+        emit statusMsg(tr("%1: ·¢ËÍÊı¾İ³É¹¦").arg(peerhostname));
 }
 
 void tabhost::setAutoRt()
@@ -166,7 +166,7 @@ void tabhost::setAutoRt()
     sendingMsg[0] = 0xeb;
     sendingMsg[1] = 0x82;
     if (dataSocket->write(sendingMsg) > 0)
-        emit statusMsg(trUtf8("%1: å‘é€æ•°æ®æˆåŠŸ").arg(peerhostname));
+        emit statusMsg(tr("%1: ·¢ËÍÊı¾İ³É¹¦").arg(peerhostname));
 }
 
 void tabhost::readDataIn()
@@ -203,40 +203,40 @@ void tabhost::readDataIn()
             model->setData(model->index(i, 1), signs.at(i + 4));
         }
         stacked->findChild<ratestatepage*>("ratepage")->tblrate->setFocus();
-        emit statusMsg(trUtf8("%1: æ¥æ”¶çŠ¶æ€ä¿¡æ¯æˆåŠŸ").arg(peerhostname));
+        emit statusMsg(tr("%1: ½ÓÊÕ×´Ì¬ĞÅÏ¢³É¹¦").arg(peerhostname));
     }
     else if (receivedMsg.startsWith(rtManutableHead))
     {
-        emit statusMsg(trUtf8("%1: æ‰‹åŠ¨è·¯ç”±è¡¨å‘é€æˆåŠŸï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: ÊÖ¶¯Â·ÓÉ±í·¢ËÍ³É¹¦£¡").arg(peerhostname));
     }
     else if (receivedMsg.startsWith(rtAutoHead))
     {
-        emit statusMsg(trUtf8("%1: è‡ªåŠ¨è·¯ç”±æ¨¡å¼å¯åŠ¨æˆåŠŸï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: ×Ô¶¯Â·ÓÉÄ£Ê½Æô¶¯³É¹¦£¡").arg(peerhostname));
     }
     else if (receivedMsg.startsWith(rtManuHead))
     {
-        emit statusMsg(trUtf8("%1: æ‰‹åŠ¨è·¯ç”±æ¨¡å¼å¯åŠ¨æˆåŠŸï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: ÊÖ¶¯Â·ÓÉÄ£Ê½Æô¶¯³É¹¦£¡").arg(peerhostname));
     }
 }
 
 void tabhost::sktErrorMsg(QAbstractSocket::SocketError socketError)
 {
     if (socketError == QAbstractSocket::ConnectionRefusedError)
-        emit statusMsg(trUtf8("%1: æ‹’ç»è¿æ¥ï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: ¾Ü¾øÁ¬½Ó£¡").arg(peerhostname));
     else if (socketError == QAbstractSocket::RemoteHostClosedError)
-        emit statusMsg(trUtf8("%1: è¿œç«¯æ–­å¼€ï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: Ô¶¶Ë¶Ï¿ª£¡").arg(peerhostname));
     else if (socketError == QAbstractSocket::HostNotFoundError)
-        emit statusMsg(trUtf8("%1: ä¸»æœºæœªå‘ç°ï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: Ö÷»úÎ´·¢ÏÖ£¡").arg(peerhostname));
     else if (socketError == QAbstractSocket::SocketTimeoutError)
-        emit statusMsg(trUtf8("%1: æ“ä½œè¶…æ—¶ï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: ²Ù×÷³¬Ê±£¡").arg(peerhostname));
     else if (socketError == QAbstractSocket::NetworkError)
-        emit statusMsg(trUtf8("%1: ç½‘ç»œé”™è¯¯ï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: ÍøÂç´íÎó£¡").arg(peerhostname));
 }
 
 void tabhost::sktConnMsg(QAbstractSocket::SocketState socketState)
 {
     if (socketState == QAbstractSocket::UnconnectedState)
-        emit statusMsg(trUtf8("%1: æœªè¿æ¥ï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: Î´Á¬½Ó£¡").arg(peerhostname));
     else if (socketState == QAbstractSocket::ConnectedState)
-        emit statusMsg(trUtf8("%1: è¿æ¥ï¼").arg(peerhostname));
+        emit statusMsg(tr("%1: Á¬½Ó£¡").arg(peerhostname));
 }

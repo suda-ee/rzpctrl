@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), statusmsg(trUtf8("å°±ç»ªï¼"), this)
+    : QMainWindow(parent), statusmsg(tr("¾ÍĞ÷£¡"), this)
 {
     setupUi(this);
     delete tab;
@@ -109,5 +109,5 @@ void MainWindow::setStatusMsg(const QString &msg)
 
 void MainWindow::aboutme()
 {
-    QMessageBox::about(this, trUtf8("å…³äº"), trUtf8("This software is protected by law and international treaties.\n (C) Soochow 2009."));
+    QMessageBox::about(this, tr("¹ØÓÚ"), tr("This software is protected by law and international treaties.\n (C) Soochow 2009."));
 }
