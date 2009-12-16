@@ -1,0 +1,85 @@
+﻿#include <QtGui/QMessageBox>
+#include "mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), statusmsg(trUtf8("就绪！"), this)
+{
+    setupUi(this);
+    delete tab;
+    statusbar->addWidget(&statusmsg, 0);
+    connect(tabwindow, SIGNAL(tabCloseRequested(int)), this, SLOT(closepage(int)));
+    connect(CloseTab, SIGNAL(triggered()), this, SLOT(closecurrentpage()));
+}
+
+void MainWindow::closepage(int index)
+{
+    delete tabwindow->widget(index);
+}
+
+void MainWindow::closecurrentpage()
+{
+    delete tabwindow->currentWidget();
+}
+
+void MainWindow::showaddrbkdlg()
+{
+    addrdlg = new dlgaddrbk(this);
+    addrdlg->show();
+    connect(addrdlg, SIGNAL(accepted()), this, SLOT(addrbkaccept()));
+    connect(addrdlg, SIGNAL(rejected()), this, SLOT(addrbkreject()));
+}
+
+void MainWindow::addrbkaccept()
+{
+    int currentrow = addrdlg->addrlist->currentIndex().row();
+    QModelIndex idx = addrdlg->hostsmodel->index(currentrow, 0);
+    QString alias = addrdlg->hostsmodel->data(idx).toString();
+    idx = addrdlg->hostsmodel->index(currentrow, 1);
+    QString hostname = addrdlg->hostsmodel->data(idx).toString();
+    idx = addrdlg->hostsmodel->index(currentrow, 2);
+    quint16 port = addrdlg->hostsmodel->data(idx).toUInt();
+    delete addrdlg;
+    addtabhost(alias, hostname, port);
+}
+
+void MainWindow::addrbkreject()
+{
+    delete addrdlg;
+}
+
+void MainWindow::showquickconndlg()
+{
+    qkdialog = new quickconn(this);
+    qkdialog->show();
+    connect(qkdialog, SIGNAL(accepted()), this, SLOT(quickconnaccept()));
+    connect(qkdialog, SIGNAL(rejected()), this, SLOT(quickconnreject()));
+}
+
+void MainWindow::quickconnaccept()
+{
+    QString hostname = (qkdialog->lnaddr)->text();
+    quint16 port = (qkdialog->sport)->value();
+    delete qkdialog;
+    addtabhost(hostname, hostname, port);
+}
+
+void MainWindow::quickconnreject()
+{
+    delete qkdialog;
+}
+
+void MainWindow::addtabhost(QString &aliasname, QString &hostName, quint16 port)
+{
+    tabhost *thetab = new tabhost(tabwindow);
+    tabwindow->addTab(thetab, thetab->windowIcon(), aliasname);
+    tabwindow->setCurrentWidget(thetab);
+}
+
+MainWindow::~MainWindow()
+{
+}
+
+void MainWindow::aboutme()
+{
+    QMessageBox::about(this, trUtf8("关于"), trUtf8("This software is protected by law and international treaties.\n (C) Soochow 2009."));
+}

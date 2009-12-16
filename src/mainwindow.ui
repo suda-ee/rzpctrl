@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindowClass</class>
+ <widget class="QMainWindow" name="MainWindowClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>综合通信平台远程控制系统</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="zpmain.qrc">
+    <normaloff>:/images/console.png</normaloff>:/images/console.png</iconset>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabwindow">
+      <property name="tabPosition">
+       <enum>QTabWidget::South</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="elideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <widget class="tabhost" name="tab">
+       <attribute name="icon">
+        <iconset resource="zpmain.qrc">
+         <normaloff>:/images/tablogo.png</normaloff>:/images/tablogo.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_C">
+    <property name="title">
+     <string>连接(&amp;C)</string>
+    </property>
+    <addaction name="OpenAdressBook"/>
+    <addaction name="QuickConn"/>
+    <addaction name="Connect"/>
+    <addaction name="Disconnect"/>
+    <addaction name="CloseTab"/>
+    <addaction name="separator"/>
+    <addaction name="quitapp"/>
+   </widget>
+   <widget class="QMenu" name="menu_O">
+    <property name="title">
+     <string>选项(&amp;O)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="aboutme"/>
+   </widget>
+   <addaction name="menu_C"/>
+   <addaction name="menu_O"/>
+   <addaction name="menu_H"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="windowTitle">
+    <string>工具条</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="OpenAdressBook"/>
+   <addaction name="QuickConn"/>
+   <addaction name="Connect"/>
+   <addaction name="Disconnect"/>
+   <addaction name="CloseTab"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="OpenAdressBook">
+   <property name="icon">
+    <iconset resource="zpmain.qrc">
+     <normaloff>:/images/netadd.png</normaloff>:/images/netadd.png</iconset>
+   </property>
+   <property name="text">
+    <string>地址本</string>
+   </property>
+  </action>
+  <action name="QuickConn">
+   <property name="icon">
+    <iconset resource="zpmain.qrc">
+     <normaloff>:/images/qkconn.png</normaloff>:/images/qkconn.png</iconset>
+   </property>
+   <property name="text">
+    <string>快速连接</string>
+   </property>
+  </action>
+  <action name="Connect">
+   <property name="icon">
+    <iconset resource="zpmain.qrc">
+     <normaloff>:/images/connect.png</normaloff>:/images/connect.png</iconset>
+   </property>
+   <property name="text">
+    <string>连接...</string>
+   </property>
+  </action>
+  <action name="Disconnect">
+   <property name="icon">
+    <iconset resource="zpmain.qrc">
+     <normaloff>:/images/disconnect.png</normaloff>:/images/disconnect.png</iconset>
+   </property>
+   <property name="text">
+    <string>断开连接</string>
+   </property>
+  </action>
+  <action name="CloseTab">
+   <property name="icon">
+    <iconset resource="zpmain.qrc">
+     <normaloff>:/images/closeTab.png</normaloff>:/images/closeTab.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭当前窗口</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="quitapp">
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="aboutme">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>tabhost</class>
+   <extends>QWidget</extends>
+   <header>tabhost.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="zpmain.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>quitapp</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>aboutme</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>aboutme()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>OpenAdressBook</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>showaddrbkdlg()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>QuickConn</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>showquickconndlg()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>aboutme()</slot>
+  <slot>showaddrbkdlg()</slot>
+  <slot>showquickconndlg()</slot>
+ </slots>
+</ui>
