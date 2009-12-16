@@ -1,5 +1,6 @@
 #include <QtGui/QMessageBox>
 #include "mainwindow.h"
+#include "optionsdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), statusmsg(tr("¾ÍÐ÷£¡"), this)
@@ -111,3 +112,11 @@ void MainWindow::aboutme()
 {
     QMessageBox::about(this, tr("¹ØÓÚ"), tr("This software is protected by law and international treaties.\n (C) Soochow 2009."));
 }
+
+void MainWindow::showOptionsDialog()
+{
+    OptionsDialog *optionsdialog;
+    optionsdialog = new OptionsDialog(this);
+    optionsdialog->exec();
+}
+
