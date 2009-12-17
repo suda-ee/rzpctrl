@@ -57,6 +57,9 @@ tabhost::tabhost(QWidget *parent)
     connect(((ratestatepage*)(datastate->thepage))->btGetRate, SIGNAL(clicked()), this, SLOT(getDataRate()));
     connect(((ratestatepage*)(datastate->thepage))->timer, SIGNAL(timeout()), this, SLOT(getDataRate()));
 
+    connect(((rtsetpage*)(routectl->thepage))->tblroute, SIGNAL(clicked(const QModelIndex &)),
+	    this, SLOT(changeRouteSet(const QModelIndex &)));
+
     connect(((rtsetpage*)(routectl->thepage)), SIGNAL(rtSetManu()), this,
             SLOT(setManuRt()));
     connect(((rtsetpage*)(routectl->thepage)), SIGNAL(rtSetAuto()), this,
@@ -71,6 +74,7 @@ tabhost::tabhost(QWidget *parent)
             SLOT(sktErrorMsg(QAbstractSocket::SocketError)));
     connect(dataSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
             this, SLOT(sktConnMsg(QAbstractSocket::SocketState)));
+
 }
 
 void tabhost::changepage(QTreeWidgetItem *item, int column)
@@ -90,6 +94,7 @@ void tabhost::setAndConn(const QString & hostName, quint16 port)
     peerhostname = hostName;
     peerport = port;
     dataSocket->connectToHost(hostName, port);
+    getDataRate();
 }
 
 void tabhost::reconnectskt()
@@ -98,6 +103,7 @@ void tabhost::reconnectskt()
     {
         dataSocket->disconnectFromHost();
         dataSocket->connectToHost(peerhostname, peerport);
+	getDataRate();
     }
 }
 
@@ -180,6 +186,8 @@ void tabhost::readDataIn()
     {
         statemodel *model = qobject_cast<statemodel*>(stacked
 		->findChild<ratestatepage*>("ratepage")->tblrate->model());
+        rtsetmodel *rtmodel = qobject_cast<rtsetmodel*>(stacked
+		->findChild<rtsetpage*>("rtSetPage")->tblroute->model());
         float rate = *(uint*)&receivedMsg.data()[4] / 1000.;
         model->setData(model->index(0, 2), rate);
         rate = *(uint*)&receivedMsg.data()[8] / 1000.;
@@ -201,6 +209,7 @@ void tabhost::readDataIn()
         {
             model->setData(model->index(i, 0), signs.at(i));
             model->setData(model->index(i, 1), signs.at(i + 4));
+            rtmodel->setData(rtmodel->index(0, i), signs.at(i), Qt::CheckStateRole);
         }
         stacked->findChild<ratestatepage*>("ratepage")->tblrate->setFocus();
         emit statusMsg(tr("%1: 接收状态信息成功").arg(peerhostname));
@@ -239,4 +248,11 @@ void tabhost::sktConnMsg(QAbstractSocket::SocketState socketState)
         emit statusMsg(tr("%1: 未连接！").arg(peerhostname));
     else if (socketState == QAbstractSocket::ConnectedState)
         emit statusMsg(tr("%1: 连接！").arg(peerhostname));
+}
+
+void tabhost::changeRouteSet(const QModelIndex & index)
+{
+    bool value = !(index.model()->data(index).toBool());
+    if ((index.model()->data(index, Qt::CheckStateRole).toBool()))
+	((QAbstractItemModel*)index.model())->setData(index, value);
 }

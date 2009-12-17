@@ -79,6 +79,9 @@
      </item>
      <item>
       <widget class="QSpinBox" name="timeInterval">
+       <property name="suffix">
+        <string> 秒</string>
+       </property>
        <property name="minimum">
         <number>1</number>
        </property>
@@ -160,9 +163,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>timeInterval</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>ratestatepage</receiver>
+   <slot>setTimerInterval(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>404</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>387</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>showHideTime(bool)</slot>
   <slot>startTimer()</slot>
+  <slot>setTimerInterval(int)</slot>
  </slots>
 </ui>

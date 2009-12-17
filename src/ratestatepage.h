@@ -21,6 +21,7 @@ public:
 
 public slots:
     void showHideTime(bool checked);
+    void setTimerInterval(int timeSecond);
     void startTimer();
 };
 

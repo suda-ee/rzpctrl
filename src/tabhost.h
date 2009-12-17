@@ -36,6 +36,7 @@ public slots:
     void slSendRoute();
     void sktErrorMsg(QAbstractSocket::SocketError socketError);
     void sktConnMsg(QAbstractSocket::SocketState socketState);
+    void changeRouteSet(const QModelIndex & index);
 
 signals:
     void statusMsg(const QString & msg);

@@ -38,3 +38,8 @@ void ratestatepage::startTimer()
     if (timeEn->isChecked())
         timer->start();
 }
+
+void ratestatepage::setTimerInterval(int timeSecond)
+{
+    timer->setInterval(timeSecond * 1000);
+}
