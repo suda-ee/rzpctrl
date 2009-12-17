@@ -1,7 +1,8 @@
 #include "rtsetmodel.h"
 
 rtsetmodel::rtsetmodel(QObject * parent)
-    : QAbstractTableModel(parent), carrier(4), hHeader(4), vHeader(4)
+    : QAbstractTableModel(parent), carrier(4), hHeader(4), vHeader(4),
+    carrierState(4)
 {
     insertColumns(0, 4);
     insertRows(0, 4);
@@ -13,6 +14,8 @@ rtsetmodel::rtsetmodel(QObject * parent)
     setHeaderData(1, Qt::Vertical, tr("”Ô“Ù"));
     setHeaderData(2, Qt::Vertical, tr(" ”∆µ"));
     setHeaderData(3, Qt::Vertical, tr("E1"));
+    for (int i = 0; i < 4; i++)
+	carrier[i] = 999;
 }
 
 rtsetmodel::~rtsetmodel()
@@ -44,6 +47,10 @@ QVariant rtsetmodel::data(const QModelIndex & index, int role) const
         else
             return false;
     }
+    else if (role == Qt::CheckStateRole)
+    {
+	return carrierState.at(index.column());
+    }
     else
     {
         return QVariant();
@@ -71,6 +78,14 @@ bool rtsetmodel::setData(const QModelIndex & idx, const QVariant & value,
     {
         if (value.toBool())
             carrier[idx.row()] = idx.column();
+	else
+            carrier[idx.row()] = 999;
+        emit dataChanged(index(idx.row(), 0), index(idx.row(), 3));
+        return true;
+    }
+    else if (role == Qt::CheckStateRole)
+    {
+	carrierState[idx.column()] = value.toBool();
         emit dataChanged(index(idx.row(), 0), index(idx.row(), 3));
         return true;
     }
@@ -80,9 +95,6 @@ bool rtsetmodel::setData(const QModelIndex & idx, const QVariant & value,
 
 Qt::ItemFlags rtsetmodel::flags(const QModelIndex & index) const
 {
-    if (!index.isValid())
-        return Qt::ItemIsEnabled;
-
     return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
 
@@ -94,14 +106,13 @@ bool rtsetmodel::setHeaderData(int section, Qt::Orientation orientation,
         if (orientation == Qt::Horizontal)
         {
             hHeader[section] = value.toString();
-            return true;
         }
         else
         {
             vHeader[section] = value.toString();
-            return true;
         }
         emit headerDataChanged(orientation, section, section);
+	return true;
     }
     else
         return QAbstractTableModel::setHeaderData(section, orientation, value,

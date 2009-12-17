@@ -25,6 +25,10 @@ void rtsetdelegate::paint(QPainter *painter,
         optBt.state = optBt.state | QStyle::State_On;
     else
         optBt.state = optBt.state | QStyle::State_Off;
+    if (index.model()->data(index, Qt::CheckStateRole).toBool())
+        optBt.state = optBt.state | QStyle::State_Enabled;
+    else
+        optBt.state = optBt.state & ~QStyle::State_Enabled;
     QApplication::style()->drawControl(QStyle::CE_CheckBox, &optBt, painter);
     painter->restore();
 }

@@ -33,6 +33,7 @@ public:
             = QModelIndex());
 
     QVector<int> carrier;
+    QVector<bool> carrierState;
 
     //Headers
     QVector<QString> hHeader;

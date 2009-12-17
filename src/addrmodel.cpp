@@ -65,17 +65,15 @@ bool addrmodel::setData(const QModelIndex & index, const QVariant & value,
         {
             case 0:
                 alias[index.row()] = value.toString();
-                return true;
                 break;
             case 1:
                 addr[index.row()] = value.toString();
-                return true;
                 break;
             default:
                 port[index.row()] = value.toInt();
-                return true;
         }
         emit dataChanged(index, index);
+	return true;
     }
     else
         return QAbstractItemModel::setData(index, value, role);
@@ -95,8 +93,8 @@ bool addrmodel::setHeaderData(int section, Qt::Orientation orientation,
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
     {
         Vheader[section] = value.toString();
-        return true;
         emit headerDataChanged(orientation, section, section);
+        return true;
     }
     else
         return QAbstractItemModel::setHeaderData(section, orientation, value,

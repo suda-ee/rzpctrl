@@ -80,17 +80,15 @@ bool statemodel::setData(const QModelIndex & index, const QVariant & value,
         {
             case 0:
                 updown.setBit(index.row(), value.toBool());
-                return true;
                 break;
             case 1:
                 busyspare.setBit(index.row(), value.toBool());
-                return true;
                 break;
             default:
                 rate[index.row()] = value.toDouble();
-                return true;
         }
         emit dataChanged(index, index);
+	return true;
     }
     else
         return QAbstractTableModel::setData(index, value, role);
@@ -112,14 +110,13 @@ bool statemodel::setHeaderData(int section, Qt::Orientation orientation,
         if (orientation == Qt::Horizontal)
         {
             hHeader[section] = value.toString();
-            return true;
         }
         else
         {
             vHeader[section] = value.toString();
-            return true;
         }
         emit headerDataChanged(orientation, section, section);
+	return true;
     }
     else
         return QAbstractTableModel::setHeaderData(section, orientation, value,

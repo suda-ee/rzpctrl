@@ -1,4 +1,7 @@
 #include "dlgaddrbk.h"
+#include <QProcessEnvironment>
+#include <QDir>
+#include <QDebug>
 
 dlgaddrbk::dlgaddrbk(QWidget *parent)
     : QDialog(parent), addrdocument()
@@ -8,7 +11,14 @@ dlgaddrbk::dlgaddrbk(QWidget *parent)
     changed = false;
     QDomElement theelem = QDomElement();
     int i;
-    theaddrfile = new QFile(ADDR_FILE, this);
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    QString profile = env.value("APPDATA");
+    if (profile == QString())
+	profile = env.value("HOME") + "/.config";
+    QDir appDataDir = QDir(profile + "/rzpctrl");
+    if (!appDataDir.exists())
+	appDataDir.mkpath(profile + "/rzpctrl");
+    theaddrfile = new QFile(profile + "/rzpctrl/" + ADDR_FILE, this);
     hostsmodel = new addrmodel(addrlist);
     hostsmodel->insertColumns(0, 3);
     hostsmodel->setHeaderData(0, Qt::Horizontal, tr("Õ¾Ãû"),
