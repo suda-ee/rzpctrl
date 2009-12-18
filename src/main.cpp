@@ -1,9 +1,11 @@
 #include <QtGui/QApplication>
 #include <QTextCodec>
 #include "mainwindow.h"
+#include <QtPlugin>
 
 int main(int argc, char *argv[])
 {
+    Q_IMPORT_PLUGIN(qcncodecs)
     QTextCodec::setCodecForTr(QTextCodec::codecForName("GBK"));
     QApplication a(argc, argv);
     QFont font = a.font();
