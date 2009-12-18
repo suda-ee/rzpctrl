@@ -18,6 +18,7 @@ win32 {
     #CONFIG += embed_manifest_exe console
 }
 CODECFORTR = GBK
+QTPLUGIN += qcncodecs
 SOURCES += main.cpp \
     mainwindow.cpp \
     tabhost.cpp \
