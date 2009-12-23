@@ -12,8 +12,8 @@ rtsetmodel::rtsetmodel(QObject * parent)
     setHeaderData(3, Qt::Horizontal, tr("V35"));
     setHeaderData(0, Qt::Vertical, tr("TDCS"));
     setHeaderData(1, Qt::Vertical, tr("ำ๏า๔"));
-    setHeaderData(2, Qt::Vertical, tr("สำฦต"));
-    setHeaderData(3, Qt::Vertical, tr("E1"));
+    setHeaderData(2, Qt::Vertical, tr("E1"));
+    setHeaderData(3, Qt::Vertical, tr("สำฦต"));
     for (int i = 0; i < 4; i++)
 	carrier[i] = 999;
 }
